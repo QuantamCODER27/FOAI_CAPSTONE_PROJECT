@@ -72,7 +72,7 @@ function Home() {
         {loading && <LoadingState />}
         {!loading && result && (
           <div className="mx-auto max-w-4xl">
-            <ResultsView result={result} />
+            <ResultsView result={result} onVerdictRevised={setResult} />
           </div>
         )}
         {!loading && !result && <FeatureGrid />}
