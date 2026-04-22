@@ -38,46 +38,43 @@
 
 :root {
   --radius: 0.75rem;
-  /* RCB — jet black, vivid scarlet, antique gold */
-  --background: oklch(0.10 0.008 20);
-  --foreground: oklch(0.98 0.018 90);
-  --card: oklch(0.15 0.04 25);
-  --card-foreground: oklch(0.98 0.018 90);
-  --popover: oklch(0.13 0.035 25);
-  --popover-foreground: oklch(0.98 0.018 90);
-  --primary: oklch(0.55 0.26 25);              /* vivid scarlet */
-  --primary-foreground: oklch(0.99 0.01 90);
-  --primary-glow: oklch(0.64 0.27 27);
-  --secondary: oklch(0.22 0.06 28);
-  --secondary-foreground: oklch(0.98 0.018 90);
-  --muted: oklch(0.18 0.04 25);
-  --muted-foreground: oklch(0.78 0.06 82);
-  --accent: oklch(0.82 0.16 88);               /* antique gold */
-  --accent-foreground: oklch(0.10 0.008 20);
-  --accent-glow: oklch(0.88 0.17 90);
-  --destructive: oklch(0.55 0.26 25);
-  --destructive-foreground: oklch(0.99 0.01 90);
-  --success: oklch(0.72 0.16 145);
-  --success-foreground: oklch(0.10 0.008 20);
+  /* Cyber — deep indigo, neon cyan, electric magenta */
+  --background: oklch(0.13 0.03 270);
+  --foreground: oklch(0.97 0.02 220);
+  --card: oklch(0.17 0.04 270);
+  --card-foreground: oklch(0.97 0.02 220);
+  --popover: oklch(0.16 0.04 270);
+  --popover-foreground: oklch(0.97 0.02 220);
+  --primary: oklch(0.78 0.18 200);              /* neon cyan */
+  --primary-foreground: oklch(0.12 0.03 270);
+  --primary-glow: oklch(0.85 0.19 200);
+  --secondary: oklch(0.22 0.06 280);
+  --secondary-foreground: oklch(0.97 0.02 220);
+  --muted: oklch(0.20 0.05 275);
+  --muted-foreground: oklch(0.72 0.05 240);
+  --accent: oklch(0.70 0.27 330);               /* electric magenta */
+  --accent-foreground: oklch(0.99 0.01 220);
+  --accent-glow: oklch(0.78 0.28 330);
+  --destructive: oklch(0.62 0.25 25);
+  --destructive-foreground: oklch(0.99 0.01 220);
+  --success: oklch(0.75 0.17 155);
+  --success-foreground: oklch(0.12 0.03 270);
   --warning: oklch(0.82 0.16 88);
-  --warning-foreground: oklch(0.10 0.008 20);
-  --border: oklch(0.55 0.18 30 / 38%);
-  --input: oklch(0.20 0.05 28);
-  --ring: oklch(0.82 0.16 88);
+  --warning-foreground: oklch(0.12 0.03 270);
+  --border: oklch(0.45 0.12 260 / 35%);
+  --input: oklch(0.22 0.06 275);
+  --ring: oklch(0.78 0.18 200);
 
-  --gradient-primary: linear-gradient(135deg, oklch(0.55 0.26 25), oklch(0.82 0.16 88));
-  --gradient-jersey: linear-gradient(160deg, oklch(0.10 0.008 20) 0%, oklch(0.22 0.10 25) 38%, oklch(0.55 0.26 25) 72%, oklch(0.82 0.16 88) 100%);
-  --gradient-aurora: linear-gradient(120deg, oklch(0.55 0.26 25 / 75%), oklch(0.10 0.008 20 / 40%) 50%, oklch(0.82 0.16 88 / 65%));
-  --gradient-glow: radial-gradient(ellipse at top, oklch(0.55 0.26 25 / 38%), transparent 60%);
-  --gradient-gold-sheen: linear-gradient(110deg, transparent 0%, oklch(0.82 0.16 88 / 45%) 45%, oklch(0.92 0.14 92 / 70%) 50%, oklch(0.82 0.16 88 / 45%) 55%, transparent 100%);
-  --shadow-glow: 0 0 60px oklch(0.55 0.26 25 / 55%);
-  --shadow-gold: 0 0 40px oklch(0.82 0.16 88 / 35%);
-  --shadow-card: 0 14px 45px oklch(0.02 0.005 20 / 85%);
+  --gradient-primary: linear-gradient(135deg, oklch(0.78 0.18 200), oklch(0.70 0.27 330));
+  --gradient-aurora: linear-gradient(120deg, oklch(0.78 0.18 200 / 70%), oklch(0.13 0.03 270 / 40%) 50%, oklch(0.70 0.27 330 / 70%));
+  --gradient-glow: radial-gradient(ellipse at top, oklch(0.78 0.18 200 / 35%), transparent 60%);
+  --shadow-glow: 0 0 60px oklch(0.78 0.18 200 / 50%);
+  --shadow-card: 0 14px 45px oklch(0.05 0.02 270 / 80%);
 }
 
 .dark {
-  --background: oklch(0.12 0.012 25);
-  --foreground: oklch(0.97 0.015 85);
+  --background: oklch(0.13 0.03 270);
+  --foreground: oklch(0.97 0.02 220);
 }
 
 @layer base {
@@ -91,10 +88,10 @@
     background: var(--background);
     color: var(--foreground);
     background-image:
-      radial-gradient(ellipse 90% 55% at 12% -10%, oklch(0.55 0.26 25 / 32%), transparent 62%),
-      radial-gradient(ellipse 75% 50% at 88% 0%, oklch(0.82 0.16 88 / 20%), transparent 60%),
-      radial-gradient(ellipse 70% 45% at 50% 100%, oklch(0.55 0.26 25 / 20%), transparent 62%),
-      linear-gradient(180deg, oklch(0.10 0.008 20) 0%, oklch(0.13 0.03 25) 100%);
+      radial-gradient(ellipse 90% 55% at 12% -10%, oklch(0.78 0.18 200 / 28%), transparent 62%),
+      radial-gradient(ellipse 75% 50% at 88% 0%, oklch(0.70 0.27 330 / 22%), transparent 60%),
+      radial-gradient(ellipse 70% 45% at 50% 100%, oklch(0.78 0.18 200 / 18%), transparent 62%),
+      linear-gradient(180deg, oklch(0.13 0.03 270) 0%, oklch(0.16 0.04 275) 100%);
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -115,27 +112,10 @@
 
   .grid-bg {
     background-image:
-      linear-gradient(oklch(0.55 0.26 25 / 10%) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(0.82 0.16 88 / 9%) 1px, transparent 1px);
+      linear-gradient(oklch(0.78 0.18 200 / 12%) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.70 0.27 330 / 10%) 1px, transparent 1px);
     background-size: 44px 44px;
     mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-  }
-
-  .bg-jersey { background: var(--gradient-jersey); }
-  .shadow-gold { box-shadow: var(--shadow-gold); }
-  .text-gold { color: var(--accent); }
-  .border-gold { border-color: var(--accent); }
-  .gold-sheen {
-    background: var(--gradient-gold-sheen);
-    background-size: 200% 100%;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: sheen 4s linear infinite;
-  }
-  @keyframes sheen {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
   }
 
   .noise-bg::before {
@@ -148,8 +128,8 @@
   }
 
   @keyframes pulse-glow {
-    0%, 100% { box-shadow: 0 0 25px oklch(0.55 0.26 25 / 55%), 0 0 60px oklch(0.55 0.26 25 / 25%); }
-    50% { box-shadow: 0 0 35px oklch(0.82 0.16 88 / 60%), 0 0 70px oklch(0.82 0.16 88 / 30%); }
+    0%, 100% { box-shadow: 0 0 25px oklch(0.78 0.18 200 / 50%), 0 0 60px oklch(0.78 0.18 200 / 22%); }
+    50% { box-shadow: 0 0 35px oklch(0.70 0.27 330 / 55%), 0 0 70px oklch(0.70 0.27 330 / 28%); }
   }
   .animate-pulse-glow { animation: pulse-glow 2.5s ease-in-out infinite; }
 
