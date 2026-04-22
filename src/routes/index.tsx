@@ -40,8 +40,9 @@ function Home() {
     <main className="relative">
       <Toaster theme="dark" position="top-right" />
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border/40">
-        <div className="absolute inset-0 grid-bg opacity-40" />
+      <section className="relative overflow-hidden border-b border-border/40 noise-bg">
+        <div className="absolute inset-0 grid-bg opacity-50" />
+        <div className="absolute inset-x-0 -top-40 h-[500px] bg-aurora opacity-30 blur-3xl animate-aurora" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
         <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-20 md:pt-28">
           <div className="mx-auto max-w-3xl text-center">
@@ -54,9 +55,9 @@ function Home() {
               <br /> with explainable AI.
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-              Paste a headline and article. We extract claims, retrieve real-world evidence from
-              Wikipedia &amp; DuckDuckGo, run a BERT classifier, and ask an AI judge to synthesize a
-              calibrated verdict — with sources you can verify.
+              Drop in a <span className="text-foreground">URL</span> or paste a headline + article. We
+              extract claims, retrieve real-world evidence from Wikipedia &amp; DuckDuckGo, run a BERT
+              classifier, and ask an AI judge to synthesize a calibrated verdict — with sources you can verify.
             </p>
           </div>
 
