@@ -1,5 +1,5 @@
 import type { VerdictResult, Verdict } from "@/lib/types";
-import { ExternalLink, AlertTriangle, CheckCircle2, HelpCircle, Scale } from "lucide-react";
+import { ExternalLink, AlertTriangle, CheckCircle2, HelpCircle, Scale, ShieldCheck, ShieldAlert } from "lucide-react";
 
 const verdictMeta: Record<
   Verdict,
@@ -38,6 +38,9 @@ const verdictMeta: Record<
 export function ResultsView({ result }: { result: VerdictResult }) {
   const meta = verdictMeta[result.verdict];
   const Icon = meta.icon;
+  const supports = result.evidence.filter((e) => e.support === "supports").length;
+  const contradicts = result.evidence.filter((e) => e.support === "contradicts").length;
+  const neutral = result.evidence.length - supports - contradicts;
 
   return (
     <div className="space-y-6">
@@ -46,9 +49,10 @@ export function ResultsView({ result }: { result: VerdictResult }) {
         className={`relative overflow-hidden rounded-2xl border border-border/60 bg-card/60 p-6 backdrop-blur-sm md:p-8 ${meta.ring} ring-1`}
       >
         <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
         <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="flex items-start gap-4">
-            <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${meta.bg}`}>
+            <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${meta.bg} ring-1 ${meta.ring}`}>
               <Icon className={`h-7 w-7 ${meta.color}`} />
             </div>
             <div>
@@ -59,6 +63,11 @@ export function ResultsView({ result }: { result: VerdictResult }) {
                 {meta.label}
               </div>
               <p className="mt-2 max-w-xl text-sm text-muted-foreground">{result.summary}</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                <StanceChip icon={ShieldCheck} label={`${supports} supporting`} tone="success" />
+                <StanceChip icon={ShieldAlert} label={`${contradicts} contradicting`} tone="destructive" />
+                <StanceChip icon={Scale} label={`${neutral} neutral`} tone="muted" />
+              </div>
             </div>
           </div>
           <ConfidenceRing value={result.confidence} />
@@ -196,6 +205,29 @@ function Section({ title, children }: { title: string; children: React.ReactNode
       </h2>
       {children}
     </section>
+  );
+}
+
+function StanceChip({
+  icon: Icon,
+  label,
+  tone,
+}: {
+  icon: typeof ShieldCheck;
+  label: string;
+  tone: "success" | "destructive" | "muted";
+}) {
+  const cls =
+    tone === "success"
+      ? "bg-success/10 text-success border-success/30"
+      : tone === "destructive"
+        ? "bg-destructive/10 text-destructive border-destructive/30"
+        : "bg-muted/30 text-muted-foreground border-border/60";
+  return (
+    <span className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-wider ${cls}`}>
+      <Icon className="h-3 w-3" />
+      {label}
+    </span>
   );
 }
 
