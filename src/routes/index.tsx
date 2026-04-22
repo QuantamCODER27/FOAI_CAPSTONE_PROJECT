@@ -54,8 +54,9 @@ function Home() {
               <br /> with explainable AI.
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground md:text-lg">
-              Paste a headline and article. We run two AI models, retrieve real-world evidence from
-              Wikipedia and DuckDuckGo, and return a transparent verdict with sources you can verify.
+              Paste a headline and article. We extract claims, retrieve real-world evidence from
+              Wikipedia &amp; DuckDuckGo, run a BERT classifier, and ask an AI judge to synthesize a
+              calibrated verdict — with sources you can verify.
             </p>
           </div>
 
@@ -80,28 +81,46 @@ function Home() {
 }
 
 function LoadingState() {
+  const stages = [
+    "Extracting claims",
+    "Querying Wikipedia + DuckDuckGo",
+    "Running BERT classifier",
+    "AI judge synthesizing verdict",
+  ];
   return (
     <div className="mx-auto max-w-4xl space-y-4">
-      <div className="h-40 animate-pulse rounded-2xl border border-border/60 bg-card/40" />
+      <div className="relative overflow-hidden rounded-2xl border border-primary/30 bg-card/40 p-6">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
+        <div className="grid gap-3 md:grid-cols-2">
+          {stages.map((s, i) => (
+            <div key={s} className="flex items-center gap-3">
+              <span
+                className="h-2 w-2 rounded-full bg-primary animate-pulse"
+                style={{ animationDelay: `${i * 250}ms` }}
+              />
+              <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                {s}…
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
       <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
         {[0, 1, 2, 3].map((i) => (
           <div key={i} className="h-20 animate-pulse rounded-xl border border-border/60 bg-card/40" />
         ))}
       </div>
       <div className="h-48 animate-pulse rounded-2xl border border-border/60 bg-card/40" />
-      <p className="text-center font-mono text-xs uppercase tracking-wider text-muted-foreground">
-        Running classifier · zero-shot NLI · Wikipedia · DuckDuckGo…
-      </p>
     </div>
   );
 }
 
 function FeatureGrid() {
   const items = [
-    { n: "01", t: "Claim extraction", d: "Identifies the strongest factual claims in the article." },
-    { n: "02", t: "Dual classification", d: "Fake-news transformer + zero-shot NLI cross-check." },
-    { n: "03", t: "Real evidence", d: "Wikipedia + DuckDuckGo — never fabricated citations." },
-    { n: "04", t: "Verdict fusion", d: "Combines model agreement and source overlap into one score." },
+    { n: "01", t: "Claim extraction", d: "Pulls the strongest factual claims using entity + numeric heuristics." },
+    { n: "02", t: "Real evidence", d: "Wikipedia + DuckDuckGo with bigram-aware stance tagging." },
+    { n: "03", t: "BERT classifier", d: "Fake-news transformer scores raw linguistic patterns." },
+    { n: "04", t: "AI judge fusion", d: "Reasoning model synthesizes evidence into a calibrated verdict." },
   ];
   return (
     <div className="mx-auto grid max-w-5xl gap-4 md:grid-cols-2 lg:grid-cols-4">
