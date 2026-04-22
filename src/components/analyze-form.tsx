@@ -16,9 +16,9 @@ interface Props {
 
 const SAMPLES = [
   {
-    headline: "Scientists confirm water discovered on Mars surface",
+    headline: "NASA's Perseverance rover collects new rock samples in Jezero Crater",
     article:
-      "NASA researchers announced today that data from the Perseverance rover indicates the presence of liquid water beneath the Martian surface. The findings, published in a peer-reviewed journal, suggest that subsurface aquifers may exist in the planet's mid-latitude regions.",
+      "NASA announced that its Perseverance rover has successfully collected additional rock core samples from Jezero Crater on Mars as part of the Mars Sample Return campaign. The agency said the samples are being cached on the Martian surface for a future mission that aims to return them to Earth for laboratory analysis. Scientists at NASA's Jet Propulsion Laboratory said the rocks could help determine whether the region, once home to an ancient lake and river delta, ever hosted microbial life.",
   },
   {
     headline: "SHOCKING: Drinking lemon water cures all diseases overnight!!!",
