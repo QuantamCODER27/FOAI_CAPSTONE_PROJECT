@@ -46,7 +46,7 @@ export function AnalyzeForm({ loading, onSubmit }: Props) {
           placeholder="Paste the news headline…"
           maxLength={500}
           required
-          minLength={5}
+          minLength={3}
           className="h-12 border-border/60 bg-background/40 text-base"
         />
       </div>
@@ -62,12 +62,12 @@ export function AnalyzeForm({ loading, onSubmit }: Props) {
           placeholder="Paste the full article text (min 40 chars)…"
           maxLength={8000}
           required
-          minLength={40}
+          minLength={20}
           rows={9}
           className="resize-y border-border/60 bg-background/40 font-mono text-sm leading-relaxed"
         />
         <div className="flex justify-between font-mono text-[10px] uppercase tracking-wider text-muted-foreground">
-          <span>Min 40 · Max 8,000 chars</span>
+          <span>Min 20 · Max 8,000 chars</span>
           <span>{article.length.toLocaleString()} / 8,000</span>
         </div>
       </div>

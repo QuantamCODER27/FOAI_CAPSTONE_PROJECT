@@ -20,8 +20,8 @@ function validate(input: unknown): AnalyzeInput {
   }
   const headline = i.headline.trim().slice(0, 500);
   const article = i.article.trim().slice(0, 8000);
-  if (headline.length < 5) throw new Error("Headline too short");
-  if (article.length < 40) throw new Error("Article too short (min 40 chars)");
+  if (headline.length < 3) throw new Error("Please enter a headline (at least 3 characters).");
+  if (article.length < 20) throw new Error("Please paste at least 20 characters of article text.");
   return { headline, article };
 }
 
