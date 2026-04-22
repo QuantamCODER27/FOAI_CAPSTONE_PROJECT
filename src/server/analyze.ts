@@ -82,7 +82,7 @@ function fuse({ classifier, judge, evidence, article }: FusionInput): {
   // Evidence stats
   const supports = evidence.filter((e) => e.support === "supports").length;
   const contradicts = evidence.filter((e) => e.support === "contradicts").length;
-  const retrievalStrength = Math.min(100, evidence.length * 11 + supports * 9);
+  const retrievalStrength = Math.min(100, evidence.length * 16 + supports * 14);
   reasoning.push(
     `Retrieved ${evidence.length} source(s): ${supports} supporting, ${contradicts} contradicting.`
   );
