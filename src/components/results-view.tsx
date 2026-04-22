@@ -1,5 +1,6 @@
 import type { VerdictResult, Verdict } from "@/lib/types";
 import { ExternalLink, AlertTriangle, CheckCircle2, HelpCircle, Scale, ShieldCheck, ShieldAlert } from "lucide-react";
+import { VerdictChat } from "@/components/verdict-chat";
 
 const verdictMeta: Record<
   Verdict,
@@ -35,7 +36,13 @@ const verdictMeta: Record<
   },
 };
 
-export function ResultsView({ result }: { result: VerdictResult }) {
+export function ResultsView({
+  result,
+  onVerdictRevised,
+}: {
+  result: VerdictResult;
+  onVerdictRevised?: (next: VerdictResult) => void;
+}) {
   const meta = verdictMeta[result.verdict];
   const Icon = meta.icon;
   const supports = result.evidence.filter((e) => e.support === "supports").length;
@@ -135,6 +142,10 @@ export function ResultsView({ result }: { result: VerdictResult }) {
           </div>
         )}
       </Section>
+
+      {onVerdictRevised && (
+        <VerdictChat result={result} onVerdictRevised={onVerdictRevised} />
+      )}
 
       <div className="rounded-xl border border-border/40 bg-muted/20 p-4 text-xs text-muted-foreground">
         <strong className="text-foreground">AI disclaimer:</strong> NewsVerdict combines machine
