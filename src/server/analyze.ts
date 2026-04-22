@@ -157,10 +157,10 @@ function fuse({ classifier, judge, evidence, article }: FusionInput): {
     }
   }
 
-  // Penalize when retrieval is weak
-  if (retrievalStrength < 18 && verdict !== "Unverified") {
-    confidence = Math.min(confidence, 65);
-    reasoning.push("Limited evidence coverage — confidence capped at 65%.");
+  // Penalize ONLY when retrieval is weak AND no supporting evidence found
+  if (retrievalStrength < 18 && supports === 0 && verdict !== "Unverified") {
+    confidence = Math.min(confidence, 72);
+    reasoning.push("Limited evidence coverage — confidence capped at 72%.");
   }
 
   // Consistency between models
