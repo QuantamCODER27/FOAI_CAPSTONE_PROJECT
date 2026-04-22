@@ -96,16 +96,36 @@ function fuse({ classifier, judge, evidence, article }: FusionInput): {
     confidence = judge.confidence;
     reasoning.push(`AI judge: ${judge.reasoning}`);
 
+    // Boost confidence when supporting evidence is strong (judge tends to be conservative)
+    if ((verdict === "Real" || verdict === "Fake") && supports >= 2 && contradicts === 0) {
+      confidence = Math.min(95, confidence + 8);
+      reasoning.push("Multiple supporting sources, no contradictions — confidence boosted.");
+    }
+    if (verdict === "Real" && supports >= 1 && contradicts === 0 && evidence.length >= 3) {
+      confidence = Math.min(94, confidence + 5);
+    }
+
     // Cross-check with classifier — boost or penalize
     if (classifierVote) {
       const judgeBinary = verdict === "Real" ? "real" : verdict === "Fake" ? "fake" : null;
       if (judgeBinary && judgeBinary === classifierVote) {
-        confidence = Math.min(96, confidence + 6);
+        confidence = Math.min(97, confidence + 8);
         reasoning.push("Classifier agrees with AI judge — confidence boosted.");
       } else if (judgeBinary && judgeBinary !== classifierVote) {
-        confidence = Math.max(40, confidence - 12);
-        reasoning.push("Classifier disagrees with AI judge — confidence reduced.");
+        // Only penalize if classifier is highly confident; BERT classifier is noisy
+        if (classifierConf > 80) {
+          confidence = Math.max(50, confidence - 8);
+          reasoning.push("High-confidence classifier disagrees — confidence slightly reduced.");
+        } else {
+          reasoning.push("Low-confidence classifier disagrees — ignored.");
+        }
       }
+    }
+
+    // Reward journalistic style for Real verdicts
+    const style = languageStyleScore(article);
+    if (verdict === "Real" && style > 75) {
+      confidence = Math.min(96, confidence + 4);
     }
   } else {
     // Fallback: classifier + evidence only
