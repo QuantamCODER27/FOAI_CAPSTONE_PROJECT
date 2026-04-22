@@ -46,8 +46,8 @@ export const Route = createRootRoute({
       { name: "description", content: "NewsVerdict is an AI-powered fake news detection and verification platform." },
       { property: "og:description", content: "NewsVerdict is an AI-powered fake news detection and verification platform." },
       { name: "twitter:description", content: "NewsVerdict is an AI-powered fake news detection and verification platform." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e307bd20-aa54-4966-b01a-3dc95faeab41/id-preview-79927524--7fb2f9de-0a6b-489e-885a-3debd77df095.lovable.app-1776831306102.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/e307bd20-aa54-4966-b01a-3dc95faeab41/id-preview-79927524--7fb2f9de-0a6b-489e-885a-3debd77df095.lovable.app-1776831306102.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/c28f7ded-cfc2-435d-86f3-78f8884754fa" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/c28f7ded-cfc2-435d-86f3-78f8884754fa" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
